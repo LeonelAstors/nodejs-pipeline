@@ -1,4 +1,4 @@
-Sample NodeJs Application On Jenkins Pipeline
+Sample NodeJs Application
 -------------------------
 
 ## Overview
