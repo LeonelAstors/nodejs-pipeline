@@ -1,5 +1,5 @@
 Sample NodeJs Application
-------------------------
+-------------------------
 
 ## Overview
 
