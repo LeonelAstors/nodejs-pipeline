@@ -12,10 +12,6 @@ pipeline {
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
         registryCredential = "Demo-Admin-User"
     }
-     options {
-    timeout(time: 30, unit: 'SECONDS')
- 
-    }
    
     stages {
 
@@ -27,9 +23,6 @@ pipeline {
 	  sh 'npm test -- --watchAll=false'
         }
       }
-    }
-     options {
-        timeout(time: 10, unit: 'SECONDS') 
     }
         
     // Building Docker images
