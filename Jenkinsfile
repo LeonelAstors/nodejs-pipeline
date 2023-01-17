@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_ACCOUNT_ID="5878-8080-2577"
-        AWS_DEFAULT_REGIOn="us-east-1" 
+        AWS_DEFAULT_REGION="us-east-1" 
         CLUSTER_NAME="jenkins-cluster"
         SERVICE_NAME="ecs-jenkins-pipeline-service"
         TASK_DEFINITION_NAME="first-run-task-definition"
