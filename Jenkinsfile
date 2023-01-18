@@ -9,8 +9,8 @@ pipeline {
         DESIRED_COUNT="1"
         IMAGE_REPO_NAME="jenkins_pipeline-ecr"
         IMAGE_TAG="${env.BUILD_ID}"
-        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        registryCredential = "Demo-Jenkins-Pipeline"
+        REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+        registryCredential="Demo-Jenkins-Pipeline"
     }
    
     stages {
