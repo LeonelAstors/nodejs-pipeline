@@ -1,4 +1,4 @@
-Sample NodeJs Application 123
+Sample NodeJs Application
 -------------------------
 
 ## Overview
