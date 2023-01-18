@@ -7,7 +7,7 @@ pipeline {
         SERVICE_NAME="ecs-jenkins-pipeline-service"
         TASK_DEFINITION_NAME="first-run-task-definition"
         DESIRED_COUNT="1"
-        IMAGE_REPO_NAME=".dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
+        IMAGE_REPO_NAME="jenkins_pipeline-ecr"
         IMAGE_TAG="${env.BUILD_ID}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
         registryCredential = "Demo-Jenkins-Pipeline"
