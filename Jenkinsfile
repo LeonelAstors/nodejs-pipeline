@@ -9,6 +9,7 @@ pipeline {
         DESIRED_COUNT="1"
         IMAGE_REPO_NAME="ecr"
         IMAGE_TAG="${env.BUILD_ID}"
+        echo $(aws ecr get-login-password)|docker login --password-stdin --username AWS ${aws_account).dkr.ecr.us-east-1.amazonaws.com
         REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
         registryCredential="Demo-Jenkins-Pipeline"
     }
