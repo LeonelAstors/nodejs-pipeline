@@ -91,7 +91,7 @@ stage('push Image') {
 
       steps{
         script {
-          docker.withRegistry(REPOSITORY_URI, 'ecr:us-east-1:registryCredential') {     
+          docker.withRegistry(REPOSITORY_URI, 'ecr:us-east-1:Demo-Jenkins-Pipeline') {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
