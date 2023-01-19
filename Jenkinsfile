@@ -39,7 +39,6 @@ pipeline {
     stage('Pushing to ECR') {
      steps{  
          script {
-           docker login -u AWS -p <password> 5878-8080-2577.dkr.ecr.us-east-1.amazonaws.com
 	   docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
        docker login, dockerImage.push()
            }
