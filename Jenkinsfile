@@ -70,7 +70,7 @@ pipeline {
         IMAGE_REPO_NAME="ecr"
         IMAGE_TAG="${env.BUILD_ID}"
         REPOSITORY_URI="https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        registryCredential="Demo-Jenkins-Pipeline"
+        registryCredential='ecr:us-east-1:Demo-Jenkins-Pipeline'
     }
   stages {
     stage('Cloning Git') {
@@ -91,7 +91,7 @@ stage('push Image') {
 
       steps{
         script {
-          docker.withRegistry(REPOSITORY_URI, 'ecr:us-east-1:Demo-Jenkins-Pipeline') {     
+          docker.withRegistry(REPOSITORY_URI, registryCredential) {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
