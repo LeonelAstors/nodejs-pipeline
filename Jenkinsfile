@@ -103,7 +103,7 @@ stage('push Image') {
  
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $IMAGE_REPO_NAME:$BUILD_NUMBER"
+        sh "docker rmi $IMAGE_REPO_NAME"
          sh "docker rmi $IMAGE_REPO_NAME:latest"
 
           }// End of remove unused docker image for master
