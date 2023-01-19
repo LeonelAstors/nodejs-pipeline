@@ -106,7 +106,7 @@ stage('push Image') {
         sh "docker rmi $IMAGE_REPO_NAME:$BUILD_NUMBER"
          sh "docker rmi $IMAGE_REPO_NAME:latest"
 
-      }// End of remove unused docker image for master
-  }  
-} //end of pipeline
-
+          }// End of remove unused docker image for master
+      }  
+    } //end of pipeline
+}
