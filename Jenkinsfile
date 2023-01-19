@@ -87,12 +87,8 @@ pipeline {
       }
     }
    
-stage('Deploy Master Image') {
-   when {
-      anyOf {
-            branch 'main'
-      }
-     }
+stage('push Image') {
+
       steps{
         script {
           docker.withRegistry(REPOSITORY_URI, registryCredential) {     
@@ -105,18 +101,12 @@ stage('Deploy Master Image') {
     }
 
  
-    stage('Remove Unused docker image - Master') {
-      when {
-      anyOf {
-            branch 'main'
-      }
-     }
+    stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $IMAGE_REPO_NAME:$BUILD_NUMBER"
          sh "docker rmi $IMAGE_REPO_NAME:latest"
 
-      }
-    } // End of remove unused docker image for master
+      }// End of remove unused docker image for master
   }  
 } //end of pipeline
 
