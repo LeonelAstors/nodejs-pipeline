@@ -82,7 +82,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build imagename
+          dockerImage = docker.build IMAGE_REPO_NAME
         }
       }
     }
@@ -90,7 +90,7 @@ pipeline {
 stage('Deploy Master Image') {
    when {
       anyOf {
-            branch 'master'
+            branch 'main'
       }
      }
       steps{
@@ -112,8 +112,8 @@ stage('Deploy Master Image') {
       }
      }
       steps{
-        sh "docker rmi $imagename:$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
+        sh "docker rmi $IMAGE_REPO_NAME:$BUILD_NUMBER"
+         sh "docker rmi $IMAGE_REPO_NAME:latest"
 
       }
     } // End of remove unused docker image for master
