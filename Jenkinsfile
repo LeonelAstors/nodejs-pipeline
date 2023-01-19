@@ -69,8 +69,8 @@ pipeline {
         DESIRED_COUNT="1"
         IMAGE_REPO_NAME="ecr"
         IMAGE_TAG="${env.BUILD_ID}"
-        REPOSITORY_URI="https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        registryCredential='ecr:us-east-1:Demo-Jenkins-Pipeline'
+        REPOSITORY_URI="https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+        registryCredential='ecr:us-east-1:ecr-credentials'
     }
   stages {
     stage('Cloning Git') {
