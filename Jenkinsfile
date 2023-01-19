@@ -91,7 +91,7 @@ stage('push Image') {
 
       steps{
         script {
-          docker.withRegistry(REPOSITORY_URI, registryCredential) {     
+          docker.withRegistry(REPOSITORY_URI, 'ecr:us-east-1:registryCredential') {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
