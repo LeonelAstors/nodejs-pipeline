@@ -1,4 +1,4 @@
-Sample NodeJs Application 12
+Sample NodeJs Application
 -------------------------
 
 ## Overview
