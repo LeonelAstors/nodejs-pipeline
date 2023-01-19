@@ -37,12 +37,11 @@ pipeline {
    
     // Uploading Docker images into AWS ECR
     stage('Pushing to ECR') {
-     steps{
-    //before_script
-    docker login --username foo --password-stdin < ~/my_password  
+     steps{  
          script {
+           docker login -u AWS -p <password> 5878-8080-2577.dkr.ecr.us-east-1.amazonaws.com
 	   docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
-       dockerImage.push()
+       docker login, dockerImage.push()
            }
          }
         }
