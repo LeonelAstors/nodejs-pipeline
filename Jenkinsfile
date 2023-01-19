@@ -9,7 +9,7 @@
 //         DESIRED_COUNT="1"
 //         IMAGE_REPO_NAME="ecr"
 //         IMAGE_TAG="${env.BUILD_ID}"
-//         REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+//         REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
 //         registryCredential="Demo-Jenkins-Pipeline"
 //     }
    
@@ -69,7 +69,7 @@ pipeline {
         DESIRED_COUNT="1"
         IMAGE_REPO_NAME="ecr"
         IMAGE_TAG="${env.BUILD_ID}"
-        REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+        REPOSITORY_URI="https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
         registryCredential="Demo-Jenkins-Pipeline"
     }
   stages {
