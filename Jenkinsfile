@@ -91,7 +91,7 @@ stage('push Image') {
 
       steps{
         script {
-          docker.withRegistry(REPOSITORY_URI, registryCredential) {     
+          docker.withRegistry("http://587880802577.dkr.ecr.us-east-1.amazonaws.com", 'ecr:us-east-1:ecr-credentials') {     
             dockerImage.push("$BUILD_NUMBER")
              dockerImage.push('latest')
 
