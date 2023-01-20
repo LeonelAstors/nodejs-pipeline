@@ -99,7 +99,6 @@ stage('push Image') {
         }
       }
     }
-stage('Deploy') {
 
  
     stage('Remove Unused docker image') {
