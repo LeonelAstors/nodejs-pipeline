@@ -100,16 +100,7 @@ stage('push Image') {
       }
     }
 stage('Deploy') {
-   
-      steps{
-          withAWS(credentials: registryCredential, region: "${AWS_DEFAULT_REGION}") {
-               script {
-			sh './script.sh'
-           }
-         } 
-      }
-    }      
-     
+
  
     stage('Remove Unused docker image') {
       steps{
