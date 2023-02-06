@@ -167,10 +167,45 @@ pipeline {
             }
         }
         
+<<<<<<< HEAD
         stage('waiting for ecs service to be stable') {
             steps {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
         }        
+=======
+    // Building Docker images
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        }
+      }
+    }
+   
+    // Uploading Docker images into AWS ECR
+    stage('Pushing to ECR') {
+     steps{
+before_script:
+    docker login --username foo --password-stdin < ~/my_password  
+         script {
+	   docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
+	dockerImage.push()
+	  }
+         }
+        }
+      }
+      
+    stage('Deploy') {
+     steps{
+            withAWS(credentials: registryCredential, region: "${AWS_DEFAULT_REGION}") {
+                script {
+			sh './script.sh'
+                }
+            } 
+        }
+      }      
+      
+>>>>>>> 2df55b7 (added new text line)
     }
 }
