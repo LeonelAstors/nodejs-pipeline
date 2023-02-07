@@ -35,13 +35,12 @@ pipeline {
             }
         }
         
-<<<<<<< HEAD
         stage('waiting for ecs service to be stable') {
             steps {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
-        }        
-=======
+        }
+        
     // Building Docker images
     stage('Building image') {
       steps{
@@ -59,7 +58,7 @@ before_script:
          script {
 	   docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
 	dockerImage.push()
-	  }
+	       }
          }
         }
       }
@@ -73,5 +72,3 @@ before_script:
             } 
         }
       }        
-    }
-}
