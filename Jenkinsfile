@@ -12,6 +12,7 @@ pipeline {
         REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com"
         REPOSITORY_NAME="jenkins_pipeline-ecr"
         registryCredential='ecr:us-east-1:ecr-credentials'
+      }
     }
     stages {
         stage('Cloning Git Repository') {
@@ -20,6 +21,7 @@ pipeline {
 
               }
             }
+        }    
         stage('build docker image') {
             steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI'
