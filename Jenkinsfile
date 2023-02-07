@@ -204,8 +204,6 @@ before_script:
                 }
             } 
         }
-      }      
-      
->>>>>>> 2df55b7 (added new text line)
+      }        
     }
 }
