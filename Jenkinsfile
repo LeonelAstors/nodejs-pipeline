@@ -43,7 +43,5 @@ pipeline {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
         }
-    
-    }
 }
 
