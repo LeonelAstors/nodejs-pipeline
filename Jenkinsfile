@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_ACCOUNT_ID="5878-8080-2577"
-        AWS_DEFAULT_REGION="us-east-1" 
+        AWS_DEFAULT_REGION="us-east-1"
         CLUSTER_NAME="jenkins-cluster"
         SERVICE_NAME="ecs-jenkins-pipeline-service"
         TASK_DEFINITION_NAME="first-run-task-definition"
@@ -12,16 +12,14 @@ pipeline {
         REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com"
         REPOSITORY_NAME="jenkins_pipeline-ecr"
         registryCredential='ecr:us-east-1:ecr-credentials'
-	    REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
-      }
+    }
     stages {
         stage('Cloning Git Repository') {
           steps {
             checkout scm
 
-              }
-            }
-        }    
+             }
+          }
         stage('build docker image') {
             steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI'
@@ -36,7 +34,7 @@ pipeline {
                 sh 'aws ecs update-service --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --task-definition first-run-task-definition --force-new-deployment --region $AWS_DEFAULT_REGION'
             }
         }
-        
+
         stage('waiting for ecs service to be stable') {
             steps {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
