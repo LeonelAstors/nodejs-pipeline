@@ -12,6 +12,7 @@ pipeline {
         REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com"
         REPOSITORY_NAME="jenkins_pipeline-ecr"
         registryCredential='ecr:us-east-1:ecr-credentials'
+	REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
       }
     }
     stages {
@@ -58,9 +59,9 @@ pipeline {
 before_script:
     docker login --username foo --password-stdin < ~/my_password  
         script {
-			docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
+		docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
                     	dockerImage.push()
-                	}
+              }
          }
         }
       }
