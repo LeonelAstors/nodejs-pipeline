@@ -12,7 +12,7 @@ pipeline {
         REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com"
         REPOSITORY_NAME="jenkins_pipeline-ecr"
         registryCredential='ecr:us-east-1:ecr-credentials'
-	REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
+	    REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
       }
     }
     stages {
@@ -43,35 +43,7 @@ pipeline {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
         }
-        
-    // Building Docker images
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-        }
-      }
+    
     }
-   
-    // Uploading Docker images into AWS ECR
-    stage('Pushing to ECR') {
-     steps{
-before_script:
-    docker login --username foo --password-stdin < ~/my_password  
-        script {
-		docker.withRegistry("https://" + REPOSITORY_URI, "ecr:us-east-1:" + registryCredential) {
-                    	dockerImage.push()
-              }
-         }
-        }
-      }
-      
-    stage('Deploy') {
-     steps{
-            withAWS(credentials: registryCredential, region: "${AWS_DEFAULT_REGION}") {
-                script {
-			sh './script.sh'
-                }
-            } 
-        }
-      }        
+}
+
