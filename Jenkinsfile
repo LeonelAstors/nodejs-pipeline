@@ -14,7 +14,6 @@ pipeline {
         registryCredential='ecr:us-east-1:ecr-credentials'
 	    REPOSITORY_URI="587880802577.dkr.ecr.us-east-1.amazonaws.com/jenkins_pipeline-ecr"
       }
-    }
     stages {
         stage('Cloning Git Repository') {
           steps {
@@ -43,5 +42,5 @@ pipeline {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
         }
+    }
 }
-
