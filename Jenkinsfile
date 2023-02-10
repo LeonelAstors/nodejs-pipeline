@@ -59,7 +59,7 @@ pipeline {
 before_script:
     docker login --username foo --password-stdin < ~/my_password  
         script {
-		docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
+		docker.withRegistry("https://" + REPOSITORY_URI, "ecr:us-east-1:" + registryCredential) {
                     	dockerImage.push()
               }
          }
