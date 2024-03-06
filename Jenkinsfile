@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        // The AWS account ID where the resources are located
         AWS_ACCOUNT_ID="5878-8080-2577"
         AWS_DEFAULT_REGION="us-east-1"
         CLUSTER_NAME="jenkins-cluster"
