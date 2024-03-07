@@ -13,13 +13,14 @@ pipeline {
         REPOSITORY_NAME="jenkins_pipeline-ecr"
         registryCredential='ecr:us-east-1:ecr-credentials'
     }
+
     stages {
         stage('Cloning Git Repository') {
-          steps {
-            checkout scm
+            steps {
+                checkout scm
+            }
+        }
 
-             }
-          }
         stage('build docker image') {
             steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $REPOSITORY_URI'
@@ -29,13 +30,39 @@ pipeline {
                 sh 'docker rm -f $REPOSITORY_URI/$REPOSITORY_NAME:$IMAGE_TAG'
             }
         }
-        stage('update ecs service') {
+
+        stage('Deploy to Dev') {
+            steps {
+                echo "Starting Deployment to Dev Environment..."
+            }
+        }
+
+        stage('Run Test') {
+            steps {
+                sh 'echo "Running unit tests..."'
+                script {
+                    if (isUnix()) {
+                        sh './run_tests.sh'
+                    } else {
+                        bat './run_tests.bat'
+                    }
+                }
+            }
+        }
+
+        stage('ECS Update') {
             steps {
                 sh 'aws ecs update-service --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --task-definition first-run-task-definition --force-new-deployment --region $AWS_DEFAULT_REGION'
             }
         }
 
-        stage('waiting for ecs service to be stable') {
+        stage("Stage Deploy") {
+            steps {
+                echo "Stage deployment Successful"
+            }
+        }
+
+        stage('Prod Deploy') {
             steps {
                 sh 'aws ecs wait services-stable --cluster jenkins-cluster --service ecs-jenkins-pipeline-service --region $AWS_DEFAULT_REGION'
             }
