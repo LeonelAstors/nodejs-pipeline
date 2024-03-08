@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage('Cloning Git Repository') {
             steps {
-                checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: '*']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/LeonelAstors/nodejs-pipeline.git']]])
             }
         }
 
