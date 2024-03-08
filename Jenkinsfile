@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage('Run Test') {
+        stage('Run Test') {  // Testing pipeline
             steps {
                 sh 'echo "Running unit tests..."'
                 script {
