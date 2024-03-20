@@ -3,7 +3,7 @@ var http = require('http');
 var server = http.createServer(function(request, response) {
 
     response.writeHead(200, {"Content-Type": "text/plain"});
-    response.end("Hello, Welcome to Astor-Sanders DevSecOps CI CD live 01/11/2024");
+    response.end("Hello, Welcome to Astor-Sanders DevSecOps CI CD live last deployment");
 
 });
 
